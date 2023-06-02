@@ -9,11 +9,11 @@ interface IngredientProps {
 const Ingredient:React.FC<IngredientProps> = (props) => {
     return (
         <div>
-            <div>
+            <div className="block-ingredient">
                 <button className={props.name + '-btn'} onClick={props.onAdd}></button>
-                <span>{props.name}</span>
-                <span>{props.count}</span>
-                <button onClick={props.onRemove}>Remove</button>
+                <span className="burger-name">{props.name}</span>
+                <span className="burger-count">x{props.count}</span>
+                <button className="remote-btn" onClick={props.onRemove}>Remove</button>
             </div>
         </div>
     );

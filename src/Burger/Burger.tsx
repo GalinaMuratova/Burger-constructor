@@ -24,7 +24,7 @@ const Burger: React.FC<BurgerProps> = (props) => {
                 ))}
                 <div className="BreadBottom"></div>
             </div>
-            <p>Price: {props.price}$</p>
+            <p className="price-burger">Price: {props.price}$</p>
         </div>
     );
 };
