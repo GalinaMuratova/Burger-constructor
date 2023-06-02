@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Ingredient from "./Ingredient/Ingredient";
+import Burger from "./Burger/Burger";
 import './App.css';
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
         ingredients.forEach((ingredient) => {
             basicPrice = basicPrice + ingredient.price * ingredient.count;
         })
-        console.log(basicPrice);
         return basicPrice;
     };
 
@@ -43,19 +43,18 @@ function App() {
     return (
     <div className="container">
       <div className="ingredients">
-          <button onClick={burgerPrice}> Click</button>
           {ingredients.map((ingredient, index) => (
               <Ingredient
                   key ={index}
                   name={ingredient.name}
                   count={ingredient.count}
                   onAdd={() => onAddIngredient(index)}
-                  onRemove={() => onRemove(index)}/>
-              ))}
+                  onRemove={() => onRemove(index)}
+              />
+          ))}
       </div>
-      <div className="burger"></div>
+      <Burger price={burgerPrice()} ingredients={ingredients}/>
     </div>
   );
 }
-
 export default App;
