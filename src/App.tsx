@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import Ingredient from "./Ingredient/Ingredient";
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    const [ingredients, setIngredients] = useState([
+        {name: 'Meat', count: 0, price: 80},
+        {name: 'Cheese', count: 0, price: 50},
+        {name: 'Salad', count: 0, price: 10},
+        {name: 'Bacon', count: 0, price: 60},
+    ]);
+
+    const burgerPrice = () => {
+        let basicPrice = 30;
+        ingredients.forEach((ingredient) => {
+            basicPrice = basicPrice + ingredient.price * ingredient.count;
+        })
+        console.log(basicPrice);
+        return basicPrice;
+    };
+
+    const onAddIngredient = () => {
+        console.log(ingredients);
+    };
+
+    const onRemove = () => {
+        console.log("remove");
+    }
+
+
+    return (
+    <div className="container">
+      <div className="ingredients">
+          <button onClick={burgerPrice}> Click</button>
+          {ingredients.map((ingredient, index) => (
+              <Ingredient
+                  key ={index}
+                  name={ingredient.name}
+                  count={ingredient.count}
+                  onAdd={() => onAddIngredient()}
+                  onRemove={() => onRemove()}/>
+              ))}
+
+      </div>
+      <div className="burger"></div>
     </div>
   );
 }
