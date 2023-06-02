@@ -19,14 +19,26 @@ function App() {
         return basicPrice;
     };
 
-    const onAddIngredient = () => {
-        console.log(ingredients);
+    const onAddIngredient = (index:number) => {
+        const copyIngredients = [...ingredients];
+        const ingredientCopy = {...ingredients[index]};
+        ingredientCopy.count += 1;
+        copyIngredients[index] = ingredientCopy;
+        setIngredients(copyIngredients);
     };
 
-    const onRemove = () => {
-        console.log("remove");
-    }
-
+    const onRemove = (index:number) => {
+        const copyIngredients = [...ingredients];
+        const ingredientCopy = {...ingredients[index]};
+        if (ingredientCopy.count === 0) {
+            ingredientCopy.count = 0;
+            copyIngredients[index] = ingredientCopy;
+        } else {
+            ingredientCopy.count -= 1;
+            copyIngredients[index] = ingredientCopy;
+        }
+        setIngredients(copyIngredients);
+    };
 
     return (
     <div className="container">
@@ -37,10 +49,9 @@ function App() {
                   key ={index}
                   name={ingredient.name}
                   count={ingredient.count}
-                  onAdd={() => onAddIngredient()}
-                  onRemove={() => onRemove()}/>
+                  onAdd={() => onAddIngredient(index)}
+                  onRemove={() => onRemove(index)}/>
               ))}
-
       </div>
       <div className="burger"></div>
     </div>
